@@ -26,9 +26,8 @@ public class ForumTestSuite {
         System.out.println("Test Suite: end");
     }
 
-    @DisplayName("When create SimpleUser with realName, "+
+    @DisplayName("When created SimpleUser with realName, "+
     "then getRealName should return real user name")
-
     @Test
     void testCaseRealName() {
         //Given
@@ -44,7 +43,6 @@ public class ForumTestSuite {
 
     @DisplayName("When created SimpleUser with name, " +
     "then getUsername should return correct name")
-
     @Test
     void testCaseUsername() {
         //Given
