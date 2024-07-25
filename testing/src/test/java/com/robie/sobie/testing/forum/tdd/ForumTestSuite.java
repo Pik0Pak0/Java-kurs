@@ -63,7 +63,7 @@ public class ForumTestSuite {
         }
 
         @DisplayName("When post does not exist, " +
-                "then test should return false")
+                "then removePost method should return false (due to removing process had no place")
         @Test
         void testRemovePostNotExisting() {
             //Given
