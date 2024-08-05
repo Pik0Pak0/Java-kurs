@@ -7,7 +7,9 @@ Celem zadania jest przetestowanie klasy, którą musisz napisać, o nazwie – p
     • Klasa ta przechowuje figury geometryczne w kolekcji ArrayList. Figury są następujące: kwadrat, koło, trójkąt (oczywiście użyj angielskich nazw klas).
     • Utwórz interfejs Shape zawierający deklarację metod:
         o metoda zwracająca nazwę figury,
-        o metoda zwracająca pole powierzchni tej figury. • Klasy figur implementują interfejs Shape oraz posiadają wszystkie wymagane przez interfejs Shape metody. • Klasa ShapeCollector ma cztery metody:
+        o metoda zwracająca pole powierzchni tej figury.
+    • Klasy figur implementują interfejs Shape oraz posiadają wszystkie wymagane przez interfejs Shape metody.
+    • Klasa ShapeCollector ma cztery metody:
         o dodającą figurę do kolekcji,
         o usuwającą figurę z kolekcji,
         o pobierającą z kolekcji figurę z pozycji n listy,
@@ -74,7 +76,7 @@ class ShapeCollectorTestSuite {
 
         //Then
         Assertions.assertTrue(result);
-        Assertions.assertEquals(shapeCollector.getFigure(0),null);
+        Assertions.assertEquals(shapeCollector.figures.size(),0);
     }
 
     @DisplayName("When a figure has not been added to the list, " +
@@ -113,20 +115,39 @@ class ShapeCollectorTestSuite {
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         Circle circle1 = new Circle("circle1",2.4);
-        Circle circle2 = new Circle("circle2",2.2);
+        Circle circle2 = new Circle("2circleee2",2.2);
+        Triangle triangle1 = new Triangle("ttttrianglee1", 2.3, 4.11);
+        Square square1 = new Square("ssqquuaarree11", 5.23);
 
         //When
         shapeCollector.addFigure(circle1);
         shapeCollector.addFigure(circle2);
+        shapeCollector.addFigure(triangle1);
+        shapeCollector.addFigure(square1);
         String result = shapeCollector.showFigures();
 
         //Then
-        Assertions.assertEquals(circle1.getShapeName(),result.substring(0,circle1.getShapeName().length()-1));
-        Assertions.assertEquals(circle2.getShapeName(),result.substring(circle1.getShapeName().length()+1,result.length()-1));//Assumption that between two shape names there are two chars (comma and space)
+        Assertions.assertEquals(circle1.getShapeName(),result.substring(14,
+                circle1.getShapeName().length()+14));
+
+        Assertions.assertEquals(circle2.getShapeName(),
+                result.substring(circle1.toString().length()+14,
+                circle1.toString().length()+14+circle2.getShapeName().length()));
+
+        Assertions.assertEquals(triangle1.getShapeName(),
+                result.substring(circle1.toString().length()+circle2.toString().length()+16,
+                        circle1.toString().length()+circle2.toString().length()+16 + triangle1.getShapeName().length()));
+
+        Assertions.assertEquals(square1.getShapeName(),
+                result.substring(circle1.toString().length()+circle2.toString().length()+
+                        triangle1.toString().length()+14,
+                        circle1.toString().length()+circle2.toString().length()+
+                                triangle1.toString().length()+14+square1.getShapeName().length()));
+
     }
 
     @DisplayName("When a figure has not been added to the list, " +
-            "then showFigures method should return 'null'")
+            "then showFigures method should have the same length (0) as empty 'figures' list")
     @Test
     void testShowFiguresNotExisting(){
         //Given
@@ -136,6 +157,6 @@ class ShapeCollectorTestSuite {
         String result = shapeCollector.showFigures();
 
         //Then
-        Assertions.assertNull(result);
+        Assertions.assertEquals(result.length(),shapeCollector.figures.size());
     }
 }
