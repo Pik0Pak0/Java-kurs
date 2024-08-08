@@ -1,3 +1,11 @@
+/*Twoim zadaniem będzie rozbudowa klasy WeatherForecast o 2 dodatkowe metody oraz
+klasy WeatherForecastTestSuite o 2 dodatkowe testy:
+• Napisz metodę (i test do niej), która na podstawie danych z interfejsu obliczy średnią temperaturę,
+• Napisz metodę (i test do niej), która na podstawie danych z interfejsu obliczy medianę temperatur.
+Zwróć uwagę, że kod odpowiadający za preparowanie danych do mocka może się powtarzać w każdym
+teście. Postaraj się tego uniknąć – możesz skorzystać z wcześniej poznanych adnotacji @BeforeEach lub @BeforeAll.
+ */
+
 package com.robie.sobie.testing.weather.mock;
 
 import com.robie.sobie.testing.weather.stub.Temperatures;
